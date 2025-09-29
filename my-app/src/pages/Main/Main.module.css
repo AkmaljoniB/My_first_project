@@ -70,22 +70,15 @@ h1 {
     padding-right: 5px;
     padding-bottom: 5px;
 }
-
-.delete_btn {
+.btn {
     background-color: white;
     width: 30px;
     height: 30px;
-}
-
-.change_btn {
-    background-color: white;
-    width: 30px;
-    height: 30px;
-    color: black;
 }
 
 .li {
     padding-left: 25px;
+    margin-bottom: 20px;
     position: relative;
     display: flex;
     align-items: center;
@@ -94,6 +87,7 @@ h1 {
     margin-top: 20px;
     justify-content: space-between;
     counter-increment: task-counter;
+    
 }
 
 .li::before {
