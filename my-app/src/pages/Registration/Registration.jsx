@@ -1,8 +1,10 @@
 import styles from './Registration.module.css'
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 function Registration() {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [gmail, setGmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,8 +20,9 @@ function Registration() {
             return;
         }
         const user = { name, gmail, password };
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem(gmail, JSON.stringify(user));
         alert("Регистрация успешна!");
+        navigate("/login")
     }
     return (
         <div className={styles.wrapper}>
@@ -33,13 +36,14 @@ function Registration() {
                 <p>Create password*</p>
                 <input value={password} onChange={(e) => setPassword(e.target.value)} className={styles.input} type="password" placeholder="Enter password" />
                 <br />
+                <Link to={"/login"}>
+                    <a href="">Уже есть аккаунт? Войти!</a>
+                </Link>
                 <div className={styles.check}>
                     <input checked={accept} onChange={(e) => setAccept(e.target.value)} className={styles.checkbox} type="checkbox" id="agree" />
                     <label htmlFor="agree">I agree to terms & conditions</label>
                 </div>
-                <Link to="/login">
-                    <button onClick={handleRegister}>Register Account</button>
-                </Link>
+                <button onClick={handleRegister}>Register Account</button>
             </div>
         </div>
     );

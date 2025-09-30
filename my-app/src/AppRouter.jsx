@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import Registration from "./pages/Registration/Registration.jsx";
 import LogIn from "./pages/Log In/LogIn.jsx";

@@ -1,21 +1,23 @@
 import styles from './LogIn.module.css'
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 function LogIn() {
     const [gmail, setGmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = () => {
-        const savedUser = JSON.parse(localStorage.getItem("user"))
+        const savedUser = JSON.parse(localStorage.getItem(gmail))
         if (!savedUser) {
             alert("Пользователь не найден! Сначала зарегистрируйтесь.");
             return;
         }
-        if (savedUser.gmail === gmail && savedUser.password === password) {
+        if (savedUser.password === password) {
             alert("Вход успешен!");
+            navigate("/main",{state:{gmail}});
         } else {
-            alert("Неверный Gmail или пароль!");
+            alert("Неверный пароль!");
         }
     }
     return (
@@ -27,9 +29,7 @@ function LogIn() {
                 <input value={gmail} onChange={(e) => setGmail(e.target.value)} className={styles.input} type="email" placeholder="Enter email address" />
                 <p>Your password</p>
                 <input value={password} onChange={(e) => setPassword(e.target.value)} className={styles.input} type="password" placeholder="Enter password" />
-                <Link to="/main">
-                    <button onClick={handleLogin}>Log In</button>
-                </Link>
+                <button onClick={handleLogin}>Log In</button>
             </div>
         </div>
     );
